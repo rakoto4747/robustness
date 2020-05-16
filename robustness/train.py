@@ -255,7 +255,7 @@ def train_model(args, model, loaders, *, checkpoint=None,
     best_prec1, start_epoch = (0, 0)
     if checkpoint:
         start_epoch = checkpoint['epoch']
-        best_prec1 = checkpoint[f"{'adv' if args.adv_train else 'nat'}_prec1"]
+        #best_prec1 = checkpoint[f"{'adv' if args.adv_train else 'nat'}_prec1"]
 
     # Put the model into parallel mode
     assert not hasattr(model, "module"), "model is already in DataParallel."

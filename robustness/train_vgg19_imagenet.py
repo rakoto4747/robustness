@@ -1,7 +1,7 @@
 
 from argparse import ArgumentParser
 import os, fnmatch
-import .model_utils, .datasets, .train, .defaults
+from . import model_utils, datasets, train, defaults
 from .datasets import CIFAR, ImageNet
 
 import torch as ch

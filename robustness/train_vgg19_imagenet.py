@@ -21,7 +21,7 @@ def find_latest_checkpoint(pattern, path):
       result = None
     return result
   
-parser = argparse.ArgumentParser()
+parser = ArgumentParser()
 parser.add_argument("--imagenet-path", help="path to the ImageNet dataset in ImageFolder-readable format", type=str)
 args = parser.parse_args()
 

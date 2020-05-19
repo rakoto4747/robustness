@@ -2,7 +2,7 @@
 from argparse import ArgumentParser
 import os, fnmatch
 from . import model_utils, datasets, train, defaults
-from .datasets import CIFAR, ImageNet
+from .datasets import ImageNet
 
 import torch as ch
 from cox.utils import Parameters
@@ -33,7 +33,7 @@ CHECKPOINT_PATH = find_latest_checkpoint('*.pt', OUT_DIR) # latest checkpoint
 
 def main():
     #Dataset
-    dataset = CIFAR(DATASET_PATH)
+    dataset = ImageNet(DATASET_PATH)
     #Model
     model, checkpoint = model_utils.make_and_restore_model(arch='vgg19', dataset=dataset, 
                                                            resume_path=CHECKPOINT_PATH)
@@ -55,9 +55,9 @@ def main():
     train_args = Parameters(train_kwargs)
     # Fill whatever parameters are missing from the defaults
     train_args = defaults.check_and_fill_args(train_args,
-                            defaults.TRAINING_ARGS, CIFAR)
+                            defaults.TRAINING_ARGS, ImageNet)
     train_args = defaults.check_and_fill_args(train_args,
-                            defaults.PGD_ARGS, CIFAR)
+                            defaults.PGD_ARGS, ImageNet)
     # Train a model
     train.train_model(train_args, model, (train_loader, val_loader), store=out_store, 
                     checkpoint=checkpoint)   
